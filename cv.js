@@ -2,190 +2,51 @@
 const ThemeMenu_BTN_ = document.getElementById("ThemeMenu_BTN");//======================================BTN-ThemeMenu
 const Competances_glass_ = document.getElementById('Competances_glass');
 const diplome_ = document.getElementById("diplome");
+let coefMOZ = 80; let coefMOZI = 0; let innerWIDTH = innerWidth; let innerHEIGHT = innerHeight;
 //document.addEventListener("scroll", () => {  console.log( "scrollY : " + scrollY ); })
-let innerWIDTH = innerWidth;
-let innerHEIGHT = innerHeight;
-// let Competan_pos_BOT = { 0:100, 1:0, 2:35, 3:0, 4:15, 5:0, 6:5, 7:0}
-  
+//---------------------------------------------------------------------------------------------------------------------Fonction utiles
+if( window.navigator.vendor == "Google Inc."){ coefMOZ = 70; coefMOZI = 5 }else{ coefMOZ=60; coefMOZI= 15 }
+let Competan_pos_TOP = {0:-20, 1:-parseInt(coefMOZ +"00"), 2:-170, 3:-125, 4:-80, 5:-40, 5:-15, }
 
 
+  const rebond_ = ( CIBLE_ID,TAB_refer,NBR_PiX,vitS) => {
+    const CIBLE_ = document.getElementById(CIBLE_ID);
+    let Cible_TAB = 1;
 
-
-let Competan_pos_TOP = {0:200, 1:-200, 2:160, 3:175, 4:185, }
-  
-    const rebond_ = ( CIBLE_ID,TAB_refer,NBR_PiX,vitS) => {
-      const CIBLE_ = document.getElementById(CIBLE_ID);
-      let vitS_REF = vitS + 0.001;
-      let point_BAS = TAB_refer[0];
-      let Cible_TAB = 1;
-      const increm_DOWN = () =>{  
-        let POS_actu=TAB_refer[Cible_TAB];  
-        const boucle = () => { 
-          if( POS_actu < point_BAS ){5    
-            CIBLE_.style.setProperty( "--pos_TOP", POS_actu + 'px' );
-            setTimeout(() => { POS_actu=NBR_PiX+POS_actu; boucle(); }, vitS_REF); } 
-          else {  Cible_TAB++; increm_UP(); }
-        } 
-        boucle();
-      }
-      const increm_UP = () =>{
-        let POS_act=point_BAS;       
-        console.log("Cible_TAB : " + Cible_TAB + "  vitS_REF : " + vitS_REF + " TAB_refer[Cible_TAB+1] : " + [Cible_TAB+1]); 
-          const boucle2 = () => {
-
-            if(POS_act > TAB_refer[Cible_TAB]){
-        console.log("TAB_refer[Cible_TAB] : " + TAB_refer[Cible_TAB] + "  POS_act : " + POS_act);
-                CIBLE_.style.setProperty( "--pos_TOP", POS_act + 'px' );
-
-                setTimeout(() => { POS_act = (--POS_act)-NBR_PiX ; boucle2(); }, vitS_REF); }
-
-            else{ 
-                
-                if(TAB_refer[Cible_TAB] == null){return "FIN";}; increm_DOWN(); }
-          
-          }
-          boucle2();
-        
+    const increm_DOWN = () =>{  
+      let POS_actu=TAB_refer[Cible_TAB];
+      const boucle = () => { 
+        if( POS_actu < TAB_refer[0] ){5    
+          CIBLE_.style.setProperty( "--pos_TOP", POS_actu + 'px' );
+          setTimeout(() => { POS_actu=NBR_PiX+POS_actu; boucle(); }, (vitS + 0.001)); } 
+        else {  Cible_TAB++; increm_UP(); }
       } 
-      increm_DOWN();
-
+      boucle();
     }
 
-
-
-
-
-    setTimeout(() => { rebond_("langue",Competan_pos_TOP,3,0); opacity_UP("langue",300); }, 5000) 
-
-    setTimeout(() => { rebond_("diplome",Competan_pos_TOP,3,0); opacity_UP("diplome",300); }, 0) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const opacity_UP = (CIBLE_ID,vitS) => {
-      const CIBLE_ = document.getElementById(CIBLE_ID);
-      let opa_actu = 0;
-      const increm_VISI_Compet = (vitS) =>{ 
-        if( opa_actu < 1 ){
-            opa_actu = opa_actu+0.01;
-            CIBLE_.style.setProperty("--visi_UP", opa_actu );
-            setTimeout(() => {increm_VISI_Compet();}, vitS);                                 
-        } else { Competan_visi_UP = 0; return; }
-      } 
-      increm_VISI_Compet(vitS);
-
-      
-
+    const increm_UP = () =>{
+      let POS_act=TAB_refer[0]; 
+        const boucle2 = () => {                 //console.log("Cible_TAB : " + Cible_TAB + "  vitS_REF : " + vitS_REF + " TAB_refer[Cible_TAB+1] : " + [Cible_TAB+1]); 
+          if(POS_act > TAB_refer[Cible_TAB]){   //console.log("TAB_refer[Cible_TAB] : " + TAB_refer[Cible_TAB] + "  POS_act : " + POS_act);
+              CIBLE_.style.setProperty( "--pos_TOP", POS_act + 'px' );
+              setTimeout(() => { POS_act = (--POS_act)-NBR_PiX ; boucle2(); }, (vitS + 0.001)); }
+          else{               
+              if(TAB_refer[Cible_TAB] == null){return "FIN";}; increm_DOWN(); } 
+        }
+        boucle2();          
+    } 
+    increm_DOWN();
+  }
+
+  const BARs_langue = ( CIBLE_ID,val) => {
+    let i = 0;
+    const boucle = ( ) => {
+      if ( i < val ) { document.getElementById(CIBLE_ID).style.setProperty("--bck_BAR", i + "%"); }
+      if ( i < val ) { document.getElementById(CIBLE_ID).style.setProperty("--bck_BAR-2", (i-2) + "%"); }
+      setTimeout(() => { i++; boucle();}, 20);
     }
-
-  (() => {
-
-    document.getElementById('Competances').style.setProperty("--Slid_LEFT_BEGIN", -30 + '%');
-    document.getElementById('Competances').style.setProperty("--Slid_LEFT_END", 0 );
-    document.getElementById('Competances').style.setProperty("--Slid_LEFT_REVnoREV", 'forwards');
-    document.getElementById('Competances').style.setProperty("--Slid_LEFT_TIME", 3 + 's');
-    document.getElementById('Competances').classList = "Slid_pos_LEFT";  
-
-
-
-
-
-
-
-
- ////////////////////////////////////////////////////////////////////////////////// Competances_glass top
-      let glass_pos_TOP = 200;
-      const increm_TOP_glass = () =>{ 
-        if(glass_pos_TOP>120){
-            --glass_pos_TOP;
-            Competances_glass_.style.setProperty("--pos_TOP", glass_pos_TOP + 'px');
-            Competances_glass_.style.setProperty("--pos_TOP", glass_pos_TOP + 'px');
-            setTimeout(() => {increm_TOP_glass();}, 0);                                 //
-        } else if (glass_pos_TOP>60){
-            --glass_pos_TOP;
-            Competances_glass_.style.setProperty("--pos_TOP", glass_pos_TOP + 'px');
-            setTimeout(() => {increm_TOP_glass();}, 5);
-        } else if (glass_pos_TOP>30){
-            --glass_pos_TOP;
-            Competances_glass_.style.setProperty("--pos_TOP", glass_pos_TOP + 'px');
-            setTimeout(() => {increm_TOP_glass();}, 10);
-        } else if (glass_pos_TOP>10){
-            --glass_pos_TOP;
-            Competances_glass_.style.setProperty("--pos_TOP", glass_pos_TOP + 'px');
-            setTimeout(() => {increm_TOP_glass();}, 20);
-        } else {  glass_pos_TOP = 200; return; }
-      } 
-      increm_TOP_glass();
-    
-    
-
-
-
-
-
-if( localStorage.theme ) { document.body.className = localStorage.theme; }
-
-
-
-  })()
-
-
-
-//=============================================================================================================================FONCTIONSutiles
+    boucle();
+  }
 
 
 var VanillaTilt = (function () {
@@ -691,9 +552,6 @@ var VanillaTilt = (function () {
     return VanillaTilt;
     
     }());
-
- 
-
 const RESTART_script = () => {
     VanillaTilt.init(document.querySelectorAll(".Muscu_VIGN_ALL, .ADD_Muscu_VIGN_ALL"),{
         reverse:                true,  // reverse the tilt direction
@@ -722,10 +580,9 @@ const RESTART_script = () => {
     });
 }
 
-
 //=============================================================================================================================FONCTIONS**
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ALLBY_ID
-document.body.addEventListener('click', (e) => {       
+document.body.addEventListener('click', (e) => {
     switch (e.target.id) {
         case "PASTILLE_Dark":
           document.body.classList = "Theme_Dark";
@@ -741,7 +598,6 @@ document.body.addEventListener('click', (e) => {
           document.body.classList = "Theme_Blue";
           localStorage.theme = "Theme_Blue";      
           location.reload();
-          window.BeforeUnloadEvent()
             break;
         case "PASTILLE_Red":  
         document.body.classList = "Theme_Red";
@@ -749,16 +605,26 @@ document.body.addEventListener('click', (e) => {
         location.reload();
             break;
 
-
-
         default:
             null;}
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ALLBY_ID**
-// SITE /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//=============================================================================================================================THEME
 
-document.getElementById("ThemeMenu_BOX").addEventListener('mouseenter', () => { ThemeMenu_BTN_.classList = "" }) ;              //OUVERTURE PASTILLES THEME
+
+(() => {  
+  document.getElementById("ThemeMenu_TXT").addEventListener('mouseenter', () => { ThemeMenu_BTN_.classList = "" }) ;              //OUVERTURE PASTILLES THEME
+  document.getElementById("Entete_BOX").addEventListener('mouseleave', () => {  ThemeMenu_BTN_.classList = "_HIDE_" }) ;              //OUVERTURE PASTILLES THEME
+
+  if( localStorage.theme ) { document.body.className = localStorage.theme; }
   
-document.getElementById("Entete_BOX").addEventListener('focusout', () => {  ThemeMenu_BTN_.classList = "_HIDE_" }) ;              //OUVERTURE PASTILLES THEME
+  setTimeout(() => { rebond_("langue",Competan_pos_TOP,5+coefMOZI,0); }, 0); 
+  setTimeout(() => { rebond_("diplome",Competan_pos_TOP,5+coefMOZI,0 ); }, 1000); 
+  setTimeout(() => { 
+    rebond_("visi_card",Competan_pos_TOP,5+coefMOZI,0); 
+    setTimeout(() => { BARs_langue("langue_fr_BAR",99 ); }, 6000);
+    setTimeout(() => { BARs_langue("langue_an_BAR",51 ); }, 8500);  
   
+  }, 2000); 
+
+
+})()

@@ -18,6 +18,7 @@ NomConstante.addEventListener(  'click', (e) => {
                                 'mouseenter'    //souris entre dans le champ
                                 'mouseout'      //sortie de la souris
                                 'mouseleave'    //la souris quitte la zone ?
+                                'keydown'       //au click d'une touche clav ou sourris
                                 'input'
                                 'change'
                                 'submit'
