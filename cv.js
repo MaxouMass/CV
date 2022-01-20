@@ -5,9 +5,12 @@ const diplome_ = document.getElementById("diplome");
 let coefMOZ_START = 80; let coefMOZI_PiX = 0; 
 //document.addEventListener("scroll", () => {  console.log( "scrollY : " + scrollY ); })
 //---------------------------------------------------------------------------------------------------------------------Fonction utiles
-if( window.navigator.vendor == "Google Inc."){ coefMOZ_START = 70; coefMOZI_PiX = 5 }else{ coefMOZ_START=60; coefMOZI_PiX= 15 }
+if( window.navigator.vendor == "Google Inc.") { coefMOZ_START = 70; coefMOZI_PiX = 5 }
+else { coefMOZ_START=60; coefMOZI_PiX= 15; document.getElementById('Competances').style.background = "rgba(100, 100, 100, 0.8)"; }
 let Competan_pos_TOP = {0:-20, 1:-parseInt(coefMOZ_START +"00"), 2:-170, 3:-125, 4:-80, 5:-40, 5:-15, };
 let Bool_Compet_opn = false;
+
+
 
 const slid_Compet_OPN = () => {  
   document.getElementById("Competances").style.setProperty("--opn_cptce", "opn_cptce");
@@ -67,17 +70,58 @@ const rebond_ = ( CIBLE_ID,TAB_refer,NBR_PiX,vitS) => {
   } 
   increm_DOWN();
 }
+const dateShort = () =>{ 
+if(window.innerWidth > 440){ 
+  document.getElementById('exper_date_4').innerHTML = `  
+    <p>du <strong>17/05/2016</strong></p>
+    <p>au <strong>28/08/2021</strong></p>
+    <p><strong>Joigny</strong></p> `    
+  document.getElementById('exper_date_3').innerHTML = `  
+    <p>du <strong>03/2014</strong></p>
+    <p>au <strong>11/2014</strong></p>
+    <p><strong>Joigny</strong></p> `   
+  document.getElementById('exper_date_2').innerHTML = `  
+    <p>du <strong>06/2012</strong></p>
+    <p>au <strong>08/2013</strong></p>
+    <p>à <strong>Joigny</strong></p> ` 
+  document.getElementById('exper_date_1').innerHTML = `  
+    <p>du <strong>01/2011</strong></p>
+    <p>au <strong>02/2011</strong></p>
+    <p>à <strong>Auxerre</strong></p> ` }       
+else {
+  document.getElementById('exper_date_4').innerHTML = `  
+    <p><strong>05/16</strong></p>
+    <p><strong>08/21</strong></p>
+    <p><strong>Joigny</strong></p> `
+  document.getElementById('exper_date_3').innerHTML = `  
+    <p><strong>03/14</strong></p>
+    <p><strong>11/14</strong></p>
+    <p><strong>Joigny</strong></p> ` 
+  document.getElementById('exper_date_2').innerHTML = `  
+    <p><strong>06/12</strong></p>
+    <p><strong>08/13</strong></p>
+    <p><strong>Joigny</strong></p> `   
+  document.getElementById('exper_date_1').innerHTML = `  
+    <p><strong>01/11</strong></p>
+    <p><strong>02/11</strong></p>
+    <p><strong>Auxerre</strong></p> ` }  
+}
+dateShort();
 
 (() => { 
   document.getElementById("ThemeMenu_TXT").addEventListener('mouseenter', () => { ThemeMenu_BTN_.classList = "" }) ;              //OUVERTURE PASTILLES THEME
   document.getElementById("Entete_BOX").addEventListener('mouseleave', () => {  ThemeMenu_BTN_.classList = "_HIDE_" }) ;              //OUVERTURE PASTILLES THEME
+  document.getElementById("visi_card_number").addEventListener('click', () => {  navigator.clipboard.writeText("0633006213") });              //OUVERTURE PASTILLES THEME
+  document.getElementById("visi_card_mail").addEventListener('click', () => {  navigator.clipboard.writeText("mxe.massonneau@free.fr") });              //OUVERTURE PASTILLES THEME
   
+
+
   window.addEventListener('resize',(e) =>{  
     console.log(e.target.innerWidth);
     dateShort();
     
-    if(!Bool_Compet_opn){ if(e.target.innerWidth > 1000 ){ slid_Compet_OPN(); }}
-    if(Bool_Compet_opn){ if(e.target.innerWidth < 1000 ){ slid_Compet_CLS(); }}  
+    if(!Bool_Compet_opn){ if(e.target.innerWidth > 1100 ){ slid_Compet_OPN(); }}
+    if(Bool_Compet_opn){ if(e.target.innerWidth < 1100 ){ slid_Compet_CLS(); }}  
   })
 
   if( localStorage.theme ) { document.body.className = localStorage.theme; }  
@@ -87,46 +131,11 @@ const rebond_ = ( CIBLE_ID,TAB_refer,NBR_PiX,vitS) => {
     { document.getElementById("infosperso_VICON").innerHTML = "&#10094;"}      
     else { document.getElementById("infosperso_VICON").innerHTML = ""}
 
-  }, 1000);
+  }, 1100);
 
 })()
 
-
-const dateShort = () =>{ 
-if(window.innerWidth > 440){ 
-  document.getElementById('exper_date_1').innerHTML = `  
-    <p>du <strong>17/06/2006</strong></p>
-    <p>au <strong>28/07/2021</strong></p>
-    <p><strong>Joigny</strong></p>
-  `    
-  document.getElementById('exper_date_2').innerHTML = `  
-  <p>du 17/06/2006</p>
-  <p>au 28/07/2021</p>
-  <p>Joigny</p>` 
-  
-  document.getElementById('exper_date_3').innerHTML = `  
-    <p>du 17/06/2006</p>
-    <p>au 28/07/2021</p>
-    <p>à Joigny</p>`}      
-else {
-  document.getElementById('exper_date_1').innerHTML = `  
-  <p><strong>06/06</strong></p>
-  <p><strong>07/21</strong></p>
-  <p><strong>Joigny</strong></p>
-    `
-  document.getElementById('exper_date_2').innerHTML = `  
-    <p>06/06</p>
-    <p>07/21</p>
-    <p>Joigny</p>`
-  document.getElementById('exper_date_3').innerHTML = `  
-    <p>06/06</p>
-    <p>07/21</p>
-    <p>Joigny</p>`} 
-}
-dateShort();
-
 if(window.innerWidth > 1000){ slid_Compet_OPN(); } else { slid_Compet_CLS(); }               //OUVERTURE PASTILLES THEME
-
 
 //=============================================================================================================================FONCTIONS**
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ALLBY_ID
@@ -159,7 +168,12 @@ document.body.addEventListener('click', (e) => {
       document.body.classList = "Theme_Red";
       localStorage.theme = "Theme_Red";      
       location.reload();
-          break;
+          break;          
+      case "PASTILLE_White":  
+        document.body.classList = "Theme_White";
+        localStorage.theme = "Theme_White";      
+        location.reload();
+          break;    
 
 
         default:
