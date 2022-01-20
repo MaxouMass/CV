@@ -1,28 +1,28 @@
 
 const ThemeMenu_BTN_ = document.getElementById("ThemeMenu_BTN");//======================================BTN-ThemeMenu
-const Competances_glass_ = document.getElementById('Competances_glass');
+const slideB_glass_ = document.getElementById('slideB_glass');
 const diplome_ = document.getElementById("diplome");
 let coefMOZ_START = 80; let coefMOZI_PiX = 0; 
 //document.addEventListener("scroll", () => {  console.log( "scrollY : " + scrollY ); })
 //---------------------------------------------------------------------------------------------------------------------Fonction utiles
 if( window.navigator.vendor == "Google Inc.") { coefMOZ_START = 70; coefMOZI_PiX = 5 }
-else { coefMOZ_START=60; coefMOZI_PiX= 15; document.getElementById('Competances').style.background = "rgba(100, 100, 100, 0.8)"; }
+else { coefMOZ_START=60; coefMOZI_PiX= 15; document.getElementById('slideB').style.background = "rgba(100, 100, 100, 0.8)"; }
 let Competan_pos_TOP = {0:-20, 1:-parseInt(coefMOZ_START +"00"), 2:-170, 3:-125, 4:-80, 5:-40, 5:-15, };
 let Bool_Compet_opn = false;
 
 
 
 const slid_Compet_OPN = () => {  
-  document.getElementById("Competances").style.setProperty("--opn_cptce", "opn_cptce");
-  document.getElementById("Competances_glass").classList = "glass_OPN";
-  if(window.innerWidth > 955){ document.getElementById("exper").classList = "exper_SHORT";}  
+  document.getElementById("slideB").style.setProperty("--opn_cptce", "opn_cptce");
+  document.getElementById("slideB_glass").classList = "glass_OPN";
+  if(window.innerWidth > 955){ document.getElementById("article").classList = "article_exper_SHORT";}  
   Bool_Compet_opn = true; 
   rebond_("visi_card",Competan_pos_TOP,5+coefMOZI_PiX,0);    
 }
 const slid_Compet_CLS = () => {
-  document.getElementById("Competances").style.setProperty("--opn_cptce", "cls_cptce");  
-  document.getElementById("Competances_glass").classList = "glass_CLS"; 
-  document.getElementById("exper").classList = "exper_LONG";
+  document.getElementById("slideB").style.setProperty("--opn_cptce", "cls_cptce");  
+  document.getElementById("slideB_glass").classList = "glass_CLS"; 
+  document.getElementById("article").classList = "article_exper_LONG";
   Bool_Compet_opn = false;
   document.querySelectorAll("#langue_fr_BAR, #langue_an_BAR").forEach((bar) => 
     { bar.style.setProperty("--bck_BAR", "0%"); bar.style.setProperty("--bck_BAR_2", "0%"); })
@@ -72,36 +72,36 @@ const rebond_ = ( CIBLE_ID,TAB_refer,NBR_PiX,vitS) => {
 }
 const dateShort = () =>{ 
 if(window.innerWidth > 440){ 
-  document.getElementById('exper_date_4').innerHTML = `  
+  document.getElementById('article_exper_date_4').innerHTML = `  
     <p>du <strong>17/05/2016</strong></p>
     <p>au <strong>28/08/2021</strong></p>
     <p><strong>Joigny</strong></p> `    
-  document.getElementById('exper_date_3').innerHTML = `  
+  document.getElementById('article_exper_date_3').innerHTML = `  
     <p>du <strong>03/2014</strong></p>
     <p>au <strong>11/2014</strong></p>
     <p><strong>Joigny</strong></p> `   
-  document.getElementById('exper_date_2').innerHTML = `  
+  document.getElementById('article_exper_date_2').innerHTML = `  
     <p>du <strong>06/2012</strong></p>
     <p>au <strong>08/2013</strong></p>
     <p>à <strong>Joigny</strong></p> ` 
-  document.getElementById('exper_date_1').innerHTML = `  
+  document.getElementById('article_exper_date_1').innerHTML = `  
     <p>du <strong>01/2011</strong></p>
     <p>au <strong>02/2011</strong></p>
     <p>à <strong>Auxerre</strong></p> ` }       
 else {
-  document.getElementById('exper_date_4').innerHTML = `  
+  document.getElementById('article_exper_date_4').innerHTML = `  
     <p><strong>05/16</strong></p>
     <p><strong>08/21</strong></p>
     <p><strong>Joigny</strong></p> `
-  document.getElementById('exper_date_3').innerHTML = `  
+  document.getElementById('article_exper_date_3').innerHTML = `  
     <p><strong>03/14</strong></p>
     <p><strong>11/14</strong></p>
     <p><strong>Joigny</strong></p> ` 
-  document.getElementById('exper_date_2').innerHTML = `  
+  document.getElementById('article_exper_date_2').innerHTML = `  
     <p><strong>06/12</strong></p>
     <p><strong>08/13</strong></p>
     <p><strong>Joigny</strong></p> `   
-  document.getElementById('exper_date_1').innerHTML = `  
+  document.getElementById('article_exper_date_1').innerHTML = `  
     <p><strong>01/11</strong></p>
     <p><strong>02/11</strong></p>
     <p><strong>Auxerre</strong></p> ` }  
