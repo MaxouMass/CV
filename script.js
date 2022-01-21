@@ -110,18 +110,16 @@ dateShort();
 
 (() => { 
   document.getElementById("ThemeMenu_TXT").addEventListener('mouseenter', () => { ThemeMenu_BTN_.classList = "" }) ;              //OUVERTURE PASTILLES THEME
-  document.getElementById("Entete_BOX").addEventListener('mouseleave', () => {  ThemeMenu_BTN_.classList = "_HIDE_" }) ;              //OUVERTURE PASTILLES THEME
-  document.getElementById("visi_card_number").addEventListener('click', () => {  navigator.clipboard.writeText("0633006213") });              //OUVERTURE PASTILLES THEME
-  document.getElementById("visi_card_mail").addEventListener('click', () => {  navigator.clipboard.writeText("mxe.massonneau@free.fr") });              //OUVERTURE PASTILLES THEME
+  document.getElementById("ThemeMenu_VICON").addEventListener('click', () => { ThemeMenu_BTN_.classList = "" }) ;              //OUVERTURE PASTILLES THEME
+  document.getElementById("Entete_BOX").addEventListener('mouseleave', () => {  ThemeMenu_BTN_.classList = "_HIDE_" }) ;              //FERMETURE PASTILLES THEME
+  document.getElementById("visi_card_mail").addEventListener('click', () => {  navigator.clipboard.writeText("mxe.massonneau@free.fr") });              //COPIE MAIL
   
   window.addEventListener('resize',(e) =>{  
     console.log(e.target.innerWidth);
     dateShort();
     
-    if(e.target.innerWidth < 400 ){ document.getElementById("ThemeMenu_TXT").innerHTML =
-      "<i id='ThemeMenu_VICON' class='fas fa-solid fa-chevron-down'></i> " }
-    else { document.getElementById("ThemeMenu_TXT").innerHTML =
-      "<i id='ThemeMenu_VICON' class='fas fa-solid fa-chevron-down'></i> Thèmes" }
+    if(e.target.innerWidth < 400 ){ document.getElementById("ThemeMenu_TXT").textContent = " " }
+    else { document.getElementById("ThemeMenu_TXT").textContent = "Thèmes" }
 
     if(!Bool_Compet_opn){ if(e.target.innerWidth > 1100 ){ slid_Compet_OPN(); }}
     if(Bool_Compet_opn){ if(e.target.innerWidth < 1100 ){ slid_Compet_CLS(); }}  
@@ -137,6 +135,10 @@ dateShort();
   }, 1100);
 
 })()
+
+
+    if(window.innerWidth < 400 ){ document.getElementById("ThemeMenu_TXT").textContent = " " }
+    else { document.getElementById("ThemeMenu_TXT").textContent = "Thèmes" }
 
 if(window.innerWidth > 1000){ slid_Compet_OPN(); } else { slid_Compet_CLS(); }               //OUVERTURE PASTILLES THEME
 

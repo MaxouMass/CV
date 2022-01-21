@@ -1,23 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
 
-
-
-/* 
-#site_ALL { min-height: 520px;
-  position: absolute;
-  background: var(--color_bkg) ; 
-  height: 105vh;
-  width: 100%;
-  top: 0;
-}   
-*/
-
-
-._HIDE_ { 
-  visibility: hidden !important;
-  position: fixed !important;
-  left: 200vw !important;
-  top: 0 !important;}
+._HIDE_ { display: none !important;}
 /*_______________________________________________________________________________________________|ENTETE|________________________*/
 .Theme_Dark {
   --color_entte_bkgrd:  linear-gradient(-160deg,
@@ -225,12 +208,12 @@ h4{
 #ThemeMenu_BOX {  
   z-index: 100;
   position: fixed;
-  top: 2.5px;
+  top: 5px;
   left: 5px;
   font-weight: bold;
   cursor: pointer; }
 #ThemeMenu_TXT {  color: var(--color_ttl);  font-size: 0.9rem; letter-spacing: 2px; }
-#ThemeMenu_VICON{ color: var(--color_ttl); font-size: 0.6rem; }
+#ThemeMenu_VICON{ display: block; color: var(--color_ttl); font-size: 0.6rem; }
 
 .ThemeMenu_PASTILLE_ALL {
   position: fixed;
@@ -281,7 +264,7 @@ h4{
   overflow-x: hidden;
   position: absolute;
   background: rgba(180, 180, 180, 0.12);
-  padding-top: 200px;
+  padding-top: 230px;
   overflow-y: hidden;
   top: 0px;
   left: -500vw;
@@ -340,7 +323,6 @@ h4{
   border-radius: 16px;
   padding:5px 20px 20px 20px;
 }
-#visi_card_number{ cursor: pointer; }
 #visi_card_mail{ cursor: pointer; }
 em{ font-size: 0.9rem; }
 
@@ -502,30 +484,20 @@ em{ font-size: 0.9rem; }
 #article_exper_taches_4{ grid-row: 5; grid-column: 2; }
   @keyframes visi_UP{form{ top:40px; opacity: 0; } to{ top:0px; opacity: 1; }}
 
-/* 
-@media screen and (max-width: 2880px){
-  * {font-size: 1.3rem ; letter-spacing: 0.3px; }
-
-  h1,h2{ font-size: 2.2rem; }
-  h3 { font-size: 1.4rem; }
-  h4{ font-size: 1.3rem; }
-  
-  #article li { font-size: 1.4rem; }
-} */
 
 @media screen and (max-width: 3400px){
   body{
-    min-height: 1800px;
+    min-height: 1700px;
   }
 
   #slideB{ min-height: 1700px; }
 
-  * {font-size: 1.6rem ; letter-spacing: 0.3px; }
+  * {font-size: 1.45rem ; letter-spacing: 0.38px; }
 
-  h1,h2{ font-size: 2.5rem; }
-  h3 { font-size: 1.7rem; }
-  h4{ font-size: 1.6rem; }
-  
+  h1,h2{ font-size: 2.35rem; }
+  h3 { font-size: 1.55rem; }
+  h4{ font-size: 1.45rem; }
+	
   #article li { font-size: 1.4rem; } 
   
 }
