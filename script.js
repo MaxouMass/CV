@@ -114,12 +114,15 @@ dateShort();
   document.getElementById("visi_card_number").addEventListener('click', () => {  navigator.clipboard.writeText("0633006213") });              //OUVERTURE PASTILLES THEME
   document.getElementById("visi_card_mail").addEventListener('click', () => {  navigator.clipboard.writeText("mxe.massonneau@free.fr") });              //OUVERTURE PASTILLES THEME
   
-
-
   window.addEventListener('resize',(e) =>{  
     console.log(e.target.innerWidth);
     dateShort();
     
+    if(e.target.innerWidth < 400 ){ document.getElementById("ThemeMenu_TXT").innerHTML =
+      "<i id='ThemeMenu_VICON' class='fas fa-solid fa-chevron-down'></i> " }
+    else { document.getElementById("ThemeMenu_TXT").innerHTML =
+      "<i id='ThemeMenu_VICON' class='fas fa-solid fa-chevron-down'></i> Thèmes" }
+
     if(!Bool_Compet_opn){ if(e.target.innerWidth > 1100 ){ slid_Compet_OPN(); }}
     if(Bool_Compet_opn){ if(e.target.innerWidth < 1100 ){ slid_Compet_CLS(); }}  
   })
@@ -174,7 +177,11 @@ document.body.addEventListener('click', (e) => {
         localStorage.theme = "Theme_White";      
         location.reload();
           break;    
-
+      case "PASTILLE_Yellow":  
+        document.body.classList = "Theme_Yellow";
+        localStorage.theme = "Theme_Yellow";      
+        location.reload();
+          break; 
 
         default:
             null;}
